@@ -1,5 +1,5 @@
 # Uncomment the imports below before you add the function code
-# import requests
+import requests
 import os
 from dotenv import load_dotenv
 
@@ -46,5 +46,3 @@ def post_review(data_dict):
         return response.json()
     except:
         print("Network exception occurred")
-
-# Add code for posting review
