@@ -60,12 +60,10 @@ def register(request):
     last_name = data['lastName']
     email = data['email']
     username_exist = False
-    email_exist = False
     try:
         # verifica si el ususario existe
         User.objects.get(username=username, email=email)
         username_exist = True
-        email_exist = True
     except Exception as err:
         # si no existe indica que es un nuevo usuario
         logger.debug(f"{err} is a new user")
@@ -141,7 +139,7 @@ def add_review(request):
         data = json.loads(request.body)
         try:
             response = post_review(data)
-            return JsonResponse({"status": 200})
+            return JsonResponse({"status": 200, "response": response})
         except Exception:
             return JsonResponse({"status": 401,
                                  "message": "Error in posting review"})
