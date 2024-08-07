@@ -138,10 +138,12 @@ def add_review(request):
     if (request.user.is_anonymous is False):
         data = json.loads(request.body)
         try:
-            response = post_review(data)
-            return JsonResponse({"status": 200, "response": response})
+            post_review(data)
+            return JsonResponse({"status": 200})
         except Exception:
             return JsonResponse({"status": 401,
                                  "message": "Error in posting review"})
+        finally:
+            print("add_review request successful!")
     else:
         return JsonResponse({"status": 403, "message": "Unauthorized"})
